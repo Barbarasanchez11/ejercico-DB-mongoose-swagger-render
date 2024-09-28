@@ -4,20 +4,22 @@ const Task = require("../models/Task");
 const { response } = require("express");
 
 module.exports = {
-    paths: {
+    paths: {//Este es el objeto principal donde se definen las diferentes rutas (endpoints) de la API. 
+        //Cada clave en este objeto representa un endpoint específico.
         '/create': {
             post: {
-                tags: {
+                tags: {//se utiliza para categorizar el endpoint. 
                     Task: 'create a new task'
                 },
                 description: 'create a task',
-                operationID: 'createTask',
+                operationID: 'createTask',//Este es un identificador único para la operación.
                 parameters: [],
-                requestBody: {
+                requestBody: {//sta sección define el cuerpo de la solicitud,
+                    //debe incluir la representación de la tarea que se quiere crear.
                     content: {
-                        'application/json': {
+                        'application/json': {//indica el formato en que se enviarán los datos
                             schema: {
-                                $ref: '#/components/schemas/Task'
+                                $ref: '#/components/schemas/Task'//se refirie al esquema definido en components
                             },
                         },
                     },
@@ -70,8 +72,9 @@ module.exports = {
                 parameters: [
                     {
                         name: '_id',
-                        in: 'path',
-                        required: true,
+                        in: 'path',//indica en qué parte de la solicitud se espera encontrar el parámetro. 
+                        //En este caso, el parámetro _id se espera que esté en la "ruta" o "path" de la URL,
+                        required: true,//indicamos que es obligatorio
                         schema: {
                             $ref: '#/components/schemas/_id'
                         },
@@ -82,7 +85,8 @@ module.exports = {
                     required:true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/UpdateTitleRequest'}
+                            schema: { 
+                                $ref: '#/components/schemas/Task'}//
                         },
                     },
                 },
