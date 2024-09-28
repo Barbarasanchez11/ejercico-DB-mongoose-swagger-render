@@ -5,7 +5,7 @@ module.exports = {
    components: {
     schemas:{
         Task: {
-            type: 'string',
+            type: 'object',
             properties: {
                 _id: {
                     type: 'string',
@@ -37,7 +37,8 @@ module.exports = {
                     example: '2024-09-22T18:15:55.455Z'
                 }
     
-            }
+            },
+            required: ["title"]
         }
    }
 }       

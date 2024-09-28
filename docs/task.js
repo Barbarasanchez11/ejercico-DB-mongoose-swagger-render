@@ -89,6 +89,7 @@ module.exports = {
                                 $ref: '#/components/schemas/Task'}//
                         },
                     },
+                    required: ["title"]
                 },
                 responses: {
                     '200': {
