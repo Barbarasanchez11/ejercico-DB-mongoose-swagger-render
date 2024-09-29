@@ -43,7 +43,7 @@ module.exports = {
                 example: '66ef4858f1a3123d81c744cb'
             },
 
-        }
+        },
     }
 }       
 
