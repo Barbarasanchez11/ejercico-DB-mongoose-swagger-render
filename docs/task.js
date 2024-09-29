@@ -1,7 +1,5 @@
-const { get } = require("mongoose");
-const components = require("./components");
-const Task = require("../models/Task");
-const { response } = require("express");
+
+
 
 module.exports = {
     paths: {//Este es el objeto principal donde se definen las diferentes rutas (endpoints) de la API. 
@@ -43,15 +41,7 @@ module.exports = {
                 description: 'get the tasks',
                 operationID: 'getTasks',
                 parameters: [],
-                requestBody: {
-                    content: {
-                        'application/json': {
-                            schema: {
-                                $ref: '#/components/schemas/Task'
-                            },
-                        },
-                    },
-                },
+                requestBody: {},
                 responses: {
                     200: {
                         description: 'List of all tasks'
@@ -74,7 +64,7 @@ module.exports = {
                         name: '_id',
                         in: 'path',//indica en qué parte de la solicitud se espera encontrar el parámetro. 
                         //En este caso, el parámetro _id se espera que esté en la "ruta" o "path" de la URL,
-                        required: true,//indicamos que es obligatorio
+                        
                         schema: {
                             $ref: '#/components/schemas/_id'
                         },
@@ -82,14 +72,14 @@ module.exports = {
                     }
                 ],
                 requestBody: {
-                    required:true,
+                    
                     content: {
                         'application/json': {
                             schema: { 
                                 $ref: '#/components/schemas/Task'}//
                         },
                     },
-                    required: ["title"]
+                    
                 },
                 responses: {
                     '200': {
@@ -99,35 +89,34 @@ module.exports = {
                         description: 'Task not found'
                     },
                 },
-            }
-        },
-                    
-        '/delete': {
+            },
+        
             delete: {
                 tags: {
-                    Task: 'Delete a task'
+                    Task: "Delete a task"
                 },
-                description: 'Delete tasks',
-                operationId: 'deleteTask',
-                paremeters: [],
-                requestBody: {
-                    content: {
-                        'application/json': {
-                            schema: {
-                                $ref: '#/components/schemas/Task'
-                            },
-                        },
+                description: "Delete a task",
+                operationId: 'DeleteTask',
+                parameters: [{
+                    name: "_id",
+                    in: "path",
+                    schema: {
+                        $ref: "#/components/schemas/_id"
                     },
+                    description: "ID of a task to be deleted",
+                },
+                ], requestBody: {
+                    content: {
+                        "application/json": {
+                            schema: { $ref: "#/components/schemas/Task" }
+                        },
+                    }
                 },
                 responses: {
-                    200: {
-                        description: 'Task deleted'
-                    },
-                    500: {
-                        description: 'Server error'
-                    },
-                },
-            },
+                    200: { description: "Task deleted successfully" },
+                    500: { description: "Server error" }
+                }
+            }
         },
 
     },
